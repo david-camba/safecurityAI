@@ -1,0 +1,6 @@
+ZZZ-AllProjectContext.txt
+ZZZ-Listar-Contenido-Proyecto.bat
+__pycache__/
+logs/*
+!logs/.gitkeep
+.env
