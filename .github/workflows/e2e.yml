@@ -1,4 +1,4 @@
-name: E2E Pipeline (Playwright)
+name: E2E (Playwright)
 
 on:
   push:
