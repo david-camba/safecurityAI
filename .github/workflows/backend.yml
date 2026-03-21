@@ -11,7 +11,7 @@ on:
       - 'pytest.ini'
       - '.github/workflows/**' 
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
     paths:
       - 'app/**'
       - 'pyproject.toml'

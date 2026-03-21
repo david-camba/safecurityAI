@@ -12,7 +12,7 @@ on:
       - 'frontend/eslint*'
       - '.github/workflows/**' 
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
     paths:
       - 'frontend/src/**'
       - 'frontend/package.json'
