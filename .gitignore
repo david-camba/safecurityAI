@@ -1,6 +1,12 @@
+.env
 ZZZ-AllProjectContext.txt
 ZZZ-Listar-Contenido-Proyecto.bat
 __pycache__/
 logs/*
 !logs/.gitkeep
-.env
+scans/*
+!scans/.gitkeep
+.ruff_cache
+.pytest_cache
+.venv
+app.log

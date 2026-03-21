@@ -1,0 +1,53 @@
+name: Backend Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'app/**'
+      - 'pyproject.toml'
+      - 'poetry.lock'
+      - 'run.py'
+      - 'pytest.ini'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'app/**'
+      - 'pyproject.toml'
+      - 'poetry.lock'
+      - 'run.py'
+      - 'pytest.ini'
+
+jobs:
+  test-backend:
+    name: Lint & Test Python
+    runs-on: ubuntu-latest
+    # Inject secrets natively at the job level so all steps have access
+    env:
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      # This step natively caches the Poetry virtual environment
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.12'
+          cache: 'poetry'
+
+      - name: Install dependencies
+        run: poetry install
+
+      # Fail-fast approach: execute fastest checks first
+      - name: Check formatting (Ruff)
+        run: poetry run ruff format --check .
+
+      - name: Check linting (Ruff)
+        run: poetry run ruff check .
+
+      - name: Run unit tests (Pytest)
+        run: poetry run pytest

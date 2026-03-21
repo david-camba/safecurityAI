@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-cyber-bg text-gray-300 font-mono;
+    margin: 0;
+  }
+
+  /* Global Cyberpunk Scrollbar Style */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-cyber-bg;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-cyber-border;
+    border: 1px solid theme('colors.cyber.accent');
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.cyber.accent');
+    box-shadow: 0 0 10px theme('colors.cyber.accent');
+  }
+
+  /* Firefox support */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.cyber.accent') theme('colors.cyber.bg');
+  }
+}
