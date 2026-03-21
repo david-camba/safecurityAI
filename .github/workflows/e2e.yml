@@ -18,6 +18,7 @@ on:
       - 'pyproject.toml'
       - 'poetry.lock'
       - 'run.py'
+      - '.github/workflows/**' 
 
 jobs:
   e2e-tests:
