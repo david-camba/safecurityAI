@@ -78,7 +78,7 @@ jobs:
       # Vite dev server lifecycle is handled internally by Playwright configuration
       - name: Run E2E tests
         working-directory: ./frontend
-        run: npx playwright test
+        run: npx playwright test --workers=3
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
