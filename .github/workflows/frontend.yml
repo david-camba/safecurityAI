@@ -2,7 +2,7 @@ name: Frontend Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
     paths:
       - 'frontend/src/**'
       - 'frontend/package.json'

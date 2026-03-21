@@ -2,7 +2,7 @@ name: Backend Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
     paths:
       - 'app/**'
       - 'pyproject.toml'
