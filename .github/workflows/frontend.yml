@@ -10,6 +10,7 @@ on:
       - 'frontend/vite.config.ts'
       - 'frontend/tsconfig*.json'
       - 'frontend/eslint*'
+      - '.github/workflows/**' 
   pull_request:
     branches: [ "main" ]
     paths:
