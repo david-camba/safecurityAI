@@ -9,6 +9,7 @@ on:
       - 'poetry.lock'
       - 'run.py'
       - 'pytest.ini'
+      - '.github/workflows/**' 
   pull_request:
     branches: [ "main" ]
     paths:

@@ -9,6 +9,7 @@ on:
       - 'pyproject.toml'
       - 'poetry.lock'
       - 'run.py'
+      - '.github/workflows/**' 
   pull_request:
     branches: [ "main" ]
     paths:
