@@ -20,6 +20,10 @@ on:
       - 'pytest.ini'
       - '.github/workflows/**' 
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test-backend:
     name: Lint & Test Python

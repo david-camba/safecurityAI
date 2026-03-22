@@ -21,6 +21,11 @@ on:
       - 'frontend/tsconfig*.json'
       - 'frontend/eslint*'
       - '.github/workflows/**' 
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test-frontend:
     name: Test React (Vitest)

@@ -20,6 +20,10 @@ on:
       - 'run.py'
       - '.github/workflows/**' 
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   e2e-tests:
     name: Playwright E2E Tests
