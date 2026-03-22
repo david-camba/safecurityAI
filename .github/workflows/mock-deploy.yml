@@ -1,7 +1,7 @@
 name: Mock Deployment
 
 on:
-  push:
+  pull_request:
     branches: [ "master" ]
   # Allows manual triggering of the deployment from the GitHub Actions UI
   workflow_dispatch:
