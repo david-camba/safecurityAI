@@ -1,10 +1,14 @@
 name: Mock Deployment
 
 on:
-  pull_request:
+  push:
     branches: [ "master" ]
   # Allows manual triggering of the deployment from the GitHub Actions UI
   workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -17,8 +21,8 @@ jobs:
     
     # Binds this job to the GitHub 'production' environment.
     environment:
-      name: production
-      url: https://your-production-url.com # Optional: Link to the live app
+      name: mock-deploy
+      # url: https://your-production-url.com # Optional: Link to the live app
 
     steps:
       - name: Checkout repository
