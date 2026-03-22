@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     FRONTEND_URL: str = "http://localhost:5173"
 
     # Pydantic automatically casts "1", "true", or "yes" to True
-    DEBUG_ON: bool = True
+    DEBUG_ON: bool = False
 
     SCANS_DIR: str = "scans"
 
