@@ -1,17 +1,8 @@
-name: Frontend Pipeline
+name: Frontend Tests
 
 on:
-  push:
-    branches: [ "main" ]
-    paths:
-      - 'frontend/src/**'
-      - 'frontend/package.json'
-      - 'frontend/package-lock.json'
-      - 'frontend/vite.config.ts'
-      - 'frontend/tsconfig*.json'
-      - 'frontend/eslint*'
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
     paths:
       - 'frontend/src/**'
       - 'frontend/package.json'
@@ -20,6 +11,14 @@ on:
       - 'frontend/tsconfig*.json'
       - 'frontend/eslint*'
       - '.github/workflows/**' 
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test-frontend:
     name: Test React (Vitest)
@@ -31,16 +30,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # This step natively caches the global ~/.npm folder
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24.14.0'
-          cache: 'npm'
-          cache-dependency-path: './frontend/package-lock.json'
-
-      - name: Install dependencies
-        run: npm ci
+      - name: Setup Node.js & NPM
+        uses: ./.github/actions/setup-node-npm
 
       - name: Run frontend tests
         run: npm run test

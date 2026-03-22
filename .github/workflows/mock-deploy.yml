@@ -1,0 +1,49 @@
+name: Mock Deployment
+
+on:
+  push:
+    branches: [ "master" ]
+  # Allows manual triggering of the deployment from the GitHub Actions UI
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Mock Deploy to Production Environment
+    runs-on: ubuntu-latest
+    
+    # Binds this job to the GitHub 'production' environment.
+    environment:
+      name: mock-deploy
+      # url: https://your-production-url.com # Optional: Link to the live app
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ------------------------------------------------------------------
+      # PLACEHOLDER: Deployment Logic
+      # ------------------------------------------------------------------
+      # The execution of deployment scripts 
+      # (e.g., Docker builds, gcloud commands, or PowerShell scripts) 
+      # should be abstracted into a Composite Action to keep the workflow clean.
+      # 
+      # Example implementation:
+      # - name: Run Deployment Action
+      #   uses: ./.github/actions/deploy-infrastructure
+      #   with:
+      #     environment: 'production'
+      #     gcp-service-account: ${{ secrets.GCP_SA_KEY }}
+      # ------------------------------------------------------------------
+
+      - name: Execute Mock Deployment
+        run: |
+          echo "Simulating deployment pipeline execution..."
+          echo "Placeholder for the actual composite action."

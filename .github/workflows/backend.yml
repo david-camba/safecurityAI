@@ -1,8 +1,8 @@
-name: Backend Pipeline
+name: Backend Tests
 
 on:
-  push:
-    branches: [ "main" ]
+  pull_request:
+    branches: [ "master" ]
     paths:
       - 'app/**'
       - 'pyproject.toml'
@@ -10,14 +10,13 @@ on:
       - 'run.py'
       - 'pytest.ini'
       - '.github/workflows/**' 
-  pull_request:
-    branches: [ "main" ]
-    paths:
-      - 'app/**'
-      - 'pyproject.toml'
-      - 'poetry.lock'
-      - 'run.py'
-      - 'pytest.ini'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test-backend:
@@ -30,18 +29,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Poetry
-        run: pipx install poetry
-
-      # This step natively caches the Poetry virtual environment
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.13.12'
-          cache: 'poetry'
-
-      - name: Install dependencies
-        run: poetry install
+      - name: Setup Python & Poetry
+        uses: ./.github/actions/setup-python-poetry
 
       # Fail-fast approach: execute fastest checks first
       - name: Check formatting (Ruff)
