@@ -69,9 +69,9 @@ SafecurityAI utilizes a state machine built on LangGraph (`AgentState`) to route
 flowchart TD
     classDef coreNode fill:#141414,stroke:#00ff41,stroke-width:2px,color:#fff
     classDef ioNode fill:#141414,stroke:#333333,stroke-width:1px,color:#ccc
-    classDef humanNode fill:#2a0a0a,stroke:#ff3131,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+    classDef humanNode fill:#2a0a0a,stroke:#ff3131,stroke-width:2px,color:#fff,stroke-dasharray:5,5
 
-    Start((Start <br> PowerShell Script)) -->|Receives Windows Telemetry| Analyst
+    StartNode(("Start <br> PowerShell Script")) -->|Receives Windows Telemetry| Analyst
 
     Analyst["🧠 Analyst Node<br>(Reasoning & Threat Detection)"]:::coreNode
     Supporter["⚙️ Supporter Node<br>(Tool Dispatcher)"]:::coreNode
@@ -79,7 +79,7 @@ flowchart TD
 
     Analyst -->|Analyzes & Request Data/Actions| Supporter
 
-    subgraph Tools ["External Integrations"]
+    subgraph Tools["External Integrations"]
         CIRCL["CIRCL Hashlookup API"]:::ioNode
         SysLog["Improvement Logger"]:::ioNode
         HITL{{"👤 Human-in-the-Loop<br>(WebSocket Pause)"}}:::humanNode
@@ -91,7 +91,7 @@ flowchart TD
     Supporter -->|Condition: Continue Analysis| Analyst
     Supporter -->|Condition: is_finished OR iter >= 10| Formatter
 
-    Formatter --> End((End))
+    Formatter --> EndNode((End))
 ```
 
 To prevent runaway LLM loops or API exhaustion, the state machine enforces a strict iteration limit (`iteration_count >= 10`), forcing the workflow to exit to the Formatter if the limit is reached.
