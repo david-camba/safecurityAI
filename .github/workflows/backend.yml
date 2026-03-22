@@ -1,15 +1,6 @@
-name: Backend Pipeline
+name: Backend Tests
 
 on:
-  push:
-    branches: [ "master" ]
-    paths:
-      - 'app/**'
-      - 'pyproject.toml'
-      - 'poetry.lock'
-      - 'run.py'
-      - 'pytest.ini'
-      - '.github/workflows/**' 
   pull_request:
     branches: [ "master" ]
     paths:

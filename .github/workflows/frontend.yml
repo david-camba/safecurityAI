@@ -1,16 +1,6 @@
-name: Frontend Pipeline
+name: Frontend Tests
 
 on:
-  push:
-    branches: [ "master" ]
-    paths:
-      - 'frontend/src/**'
-      - 'frontend/package.json'
-      - 'frontend/package-lock.json'
-      - 'frontend/vite.config.ts'
-      - 'frontend/tsconfig*.json'
-      - 'frontend/eslint*'
-      - '.github/workflows/**' 
   pull_request:
     branches: [ "master" ]
     paths:

@@ -1,15 +1,6 @@
-name: E2E (Playwright)
+name: E2E (Playwright) Tests
 
 on:
-  push:
-    branches: [ "master" ]
-    paths:
-      - 'app/**'
-      - 'frontend/**'
-      - 'pyproject.toml'
-      - 'poetry.lock'
-      - 'run.py'
-      - '.github/workflows/**' 
   pull_request:
     branches: [ "master" ]
     paths:
