@@ -1,0 +1,26 @@
+name: Setup Python and Poetry
+description: Installs Poetry, sets up Python with caching, and installs dependencies.
+
+inputs:
+  python-version:
+    description: 'Python version to use'
+    required: false
+    default: '3.13.12'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install Poetry
+      shell: bash
+      run: pipx install poetry
+
+    # This step natively caches the Poetry virtual environment
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+        cache: 'poetry'
+
+    - name: Install dependencies
+      shell: bash
+      run: poetry install
